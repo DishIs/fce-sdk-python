@@ -29,7 +29,7 @@ pip install freecustom-email
 
 ### 1. Initialize the Client
 
-Get your API key from the [FreeCustom.Email Dashboard](https://freecustom.email/dashboard).
+Get your API key from the [FreeCustom.Email Dashboard](https://freecustom.email/api/dashboard).
 
 ```python
 from freecustom_email import FreeCustomEmail
