@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "freecustom-email"
+version = "1.0.0"
+description = "Official Python SDK for FreeCustom.Email — disposable inboxes, OTP extraction, real-time WebSocket delivery"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+keywords = [
+    "disposable-email",
+    "temp-mail",
+    "otp",
+    "email-api",
+    "freecustom",
+    "temporary-email",
+    "fake-email",
+    "inbox",
+]
+authors = [
+    { name = "FreeCustom.Email", email = "support@freecustom.email" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Email",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-httpx>=0.30.0",
+    "mypy>=1.10.0",
+    "ruff>=0.4.0",
+]
+
+[project.urls]
+Homepage      = "https://freecustom.email"
+Documentation = "https://freecustom.email/docs/api"
+Repository    = "https://github.com/freecustomemail/sdk-python"
+"Bug Tracker" = "https://github.com/freecustomemail/sdk-python/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/freecustom"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+strict = true
+python_version = "3.9"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
