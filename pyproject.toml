@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "freecustom-email"
-version = "1.0.0"
+version = "1.0.1"
 description = "Official Python SDK for FreeCustom.Email — disposable inboxes, OTP extraction, real-time WebSocket delivery"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -51,9 +51,9 @@ dev = [
 
 [project.urls]
 Homepage      = "https://freecustom.email"
-Documentation = "https://freecustom.email/docs/api"
-Repository    = "https://github.com/freecustomemail/sdk-python"
-"Bug Tracker" = "https://github.com/freecustomemail/sdk-python/issues"
+Documentation = "https://freecustom.email/api/docs"
+Repository    = "https://github.com/fce-sdk-python"
+"Bug Tracker" = "https://github.com/fce-sdk-python/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/freecustom"]
