@@ -134,9 +134,9 @@ class SyncHttpClient:
 
     Usage::
 
-        from freecustom import FreecustomEmailClient
+        from freecustom_email import FreeCustomEmail
 
-        client = FreecustomEmailClient(api_key="fce_...", sync=True)
+        client = FreeCustomEmail(api_key="fce_...", sync=True)
         inboxes = client.inboxes.list()   # no await needed
     """
 

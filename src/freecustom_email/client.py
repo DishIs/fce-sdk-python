@@ -1,5 +1,5 @@
 """
-FreecustomEmailClient — FreeCustom.Email Python SDK main entry point.
+FreeCustomEmail — FreeCustom.Email Python SDK main entry point.
 Supports both async (default) and sync modes.
 """
 from __future__ import annotations
@@ -16,17 +16,17 @@ from .resources.webhooks import WebhooksResource, SyncWebhooksResource
 from .resources.account import AccountResource, SyncAccountResource
 
 
-class FreecustomEmailClient:
+class FreeCustomEmail:
     """
     Async client for FreeCustom.Email API.
 
     Usage (async — recommended)::
 
         import asyncio
-        from freecustom import FreecustomEmailClient
+        from freecustom_email import FreeCustomEmail
 
         async def main():
-            client = FreecustomEmailClient(api_key="fce_...")
+            client = FreeCustomEmail(api_key="fce_...")
 
             await client.inboxes.register("mytest@ditube.info")
             otp = await client.otp.wait_for("mytest@ditube.info")
@@ -36,7 +36,7 @@ class FreecustomEmailClient:
 
     Usage (sync)::
 
-        client = FreecustomEmailClient(api_key="fce_...", sync=True)
+        client = FreeCustomEmail(api_key="fce_...", sync=True)
         client.inboxes.register("mytest@ditube.info")
         otp = client.otp.wait_for("mytest@ditube.info")
         print(otp)

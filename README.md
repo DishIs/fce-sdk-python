@@ -32,19 +32,19 @@ pip install freecustom-email
 Get your API key from the [FreeCustom.Email Dashboard](https://freecustom.email/dashboard).
 
 ```python
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 
-client = FreecustomEmailClient(api_key="fce_your_api_key")
+client = FreeCustomEmail(api_key="fce_your_api_key")
 ```
 
 ### 2. Async Usage (Recommended)
 
 ```python
 import asyncio
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 
 async def main():
-    client = FreecustomEmailClient(api_key="fce_...")
+    client = FreeCustomEmail(api_key="fce_...")
 
     # Register an inbox
     await client.inboxes.register("test@ditube.info")
@@ -67,9 +67,9 @@ if __name__ == "__main__":
 ### 3. Sync Usage
 
 ```python
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 
-client = FreecustomEmailClient(api_key="fce_...", sync=True)
+client = FreeCustomEmail(api_key="fce_...", sync=True)
 
 # Register and wait
 client.inboxes.register("sync-test@ditube.info")
@@ -85,10 +85,10 @@ Connect to our WebSocket server to receive emails instantly as they arrive.
 
 ```python
 import asyncio
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 
 async def main():
-    client = FreecustomEmailClient(api_key="fce_...")
+    client = FreeCustomEmail(api_key="fce_...")
     
     # Subscribe to a specific mailbox or all emails on your plan
     ws = client.realtime(mailbox="test@ditube.info")
@@ -175,6 +175,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🔗 Links
 
 - [Official Website](https://freecustom.email)
-- [API Documentation](https://freecustom.email/docs/api)
-- [Dashboard](https://freecustom.email/dashboard)
+- [API Documentation](https://freecustom.email/api/docs)
+- [Dashboard](https://freecustom.email/api/dashboard)
 - [Support](mailto:support@freecustom.email)

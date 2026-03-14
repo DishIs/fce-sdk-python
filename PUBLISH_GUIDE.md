@@ -12,7 +12,7 @@ freecustom-email/
 ├── src/
 │   └── freecustom-email/
 │       ├── __init__.py       ← public exports
-│       ├── client.py         ← FreecustomEmailClient (async + sync)
+│       ├── client.py         ← FreeCustomEmail (async + sync)
 │       ├── http.py           ← httpx-based HTTP client
 │       ├── ws_client.py      ← websockets-based WS client
 │       ├── types.py          ← all dataclasses
@@ -94,11 +94,11 @@ STEP 6 — TEST LOCALLY
 pip install dist/freecustom_email-1.0.0-py3-none-any.whl
 
 python << 'EOF'
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 import asyncio
 
 async def test():
-    client = FreecustomEmailClient(api_key="fce_your_real_key")
+    client = FreeCustomEmail(api_key="fce_your_real_key")
     info = await client.account.info()
     print("Plan:", info.plan)
     print("Credits:", info.credits)
@@ -157,7 +157,7 @@ twine upload dist/*
 
 # Verify install works
 pip install freecustom-email
-python -c "import freecustom; print(freecustom.__version__)"
+python -c "import freecustom_email; print(freecustom.__version__)"
 
 ══════════════════════════════════════════════════════════════
 STEP 10 — PUBLISHING UPDATES
@@ -181,10 +181,10 @@ USAGE EXAMPLES
 ── ASYNC (recommended) ──────────────────────────────────────
 
     import asyncio
-    from freecustom import FreecustomEmailClient
+    from freecustom_email import FreeCustomEmail
 
     async def main():
-        client = FreecustomEmailClient(api_key="fce_...")
+        client = FreeCustomEmail(api_key="fce_...")
 
         # Register inbox
         await client.inboxes.register("mytest@ditube.info")
@@ -215,9 +215,9 @@ USAGE EXAMPLES
 
 ── SYNC ─────────────────────────────────────────────────────
 
-    from freecustom import FreecustomEmailClient
+    from freecustom_email import FreeCustomEmail
 
-    client = FreecustomEmailClient(api_key="fce_...", sync=True)
+    client = FreeCustomEmail(api_key="fce_...", sync=True)
 
     client.inboxes.register("mytest@ditube.info")
     messages = client.messages.list("mytest@ditube.info")
@@ -227,10 +227,10 @@ USAGE EXAMPLES
 ── WEBSOCKET ─────────────────────────────────────────────────
 
     import asyncio
-    from freecustom import FreecustomEmailClient
+    from freecustom_email import FreeCustomEmail
 
     async def main():
-        client = FreecustomEmailClient(api_key="fce_...")
+        client = FreeCustomEmail(api_key="fce_...")
 
         ws = client.realtime(mailbox="mytest@ditube.info")
 
@@ -260,7 +260,7 @@ USAGE EXAMPLES
 
 ── ERROR HANDLING ────────────────────────────────────────────
 
-    from freecustom import FreecustomEmailClient
+    from freecustom_email import FreeCustomEmail
     from freecustom.errors import (
         AuthError, PlanError, RateLimitError,
         NotFoundError, TimeoutError, WaitTimeoutError,

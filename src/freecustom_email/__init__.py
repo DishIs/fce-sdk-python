@@ -4,9 +4,9 @@ Official client for the FreeCustom.Email API.
 
 Usage::
 
-    from freecustom import FreecustomEmailClient
+    from freecustom_email import FreeCustomEmail
 
-    client = FreecustomEmailClient(api_key="fce_your_key")
+    client = FreeCustomEmail(api_key="fce_your_key")
 
     # Register inbox
     await client.inboxes.register("mytest@ditube.info")
@@ -25,7 +25,7 @@ Usage::
     await ws.connect()
 """
 
-from .client import FreecustomEmailClient
+from .client import FreeCustomEmail
 from .ws_client import WsClient
 from .errors import (
     FreecustomEmailError,
@@ -55,9 +55,9 @@ from .types import (
     WsErrorEvent,
 )
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __all__ = [
-    "FreecustomEmailClient",
+    "FreeCustomEmail",
     "WsClient",
     # Errors
     "FreecustomEmailError",

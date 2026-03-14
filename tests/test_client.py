@@ -7,7 +7,7 @@ import pytest
 import pytest_asyncio
 from unittest.mock import AsyncMock, patch, MagicMock
 
-from freecustom import FreecustomEmailClient
+from freecustom_email import FreeCustomEmail
 from freecustom.errors import AuthError, PlanError, NotFoundError
 
 
@@ -15,19 +15,19 @@ from freecustom.errors import AuthError, PlanError, NotFoundError
 
 @pytest.fixture
 def client():
-    return FreecustomEmailClient(api_key="fce_test_key")
+    return FreeCustomEmail(api_key="fce_test_key")
 
 
 @pytest.fixture
 def sync_client():
-    return FreecustomEmailClient(api_key="fce_test_key", sync=True)
+    return FreeCustomEmail(api_key="fce_test_key", sync=True)
 
 
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 def test_raises_on_empty_api_key():
     with pytest.raises(ValueError, match="api_key is required"):
-        FreecustomEmailClient(api_key="")
+        FreeCustomEmail(api_key="")
 
 
 # ── Account ───────────────────────────────────────────────────────────────────
