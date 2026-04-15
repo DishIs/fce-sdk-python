@@ -44,6 +44,17 @@ class UnregisterInboxResult:
     def from_dict(cls, d: dict[str, Any]) -> "UnregisterInboxResult":
         return cls(success=d["success"], message=d.get("message", ""))
 
+
+@dataclass
+class StartTestResult:
+    success: bool
+    message: str
+    test_id: str
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "StartTestResult":
+        return cls(success=d["success"], message=d.get("message", ""), test_id=d.get("test_id", ""))
+
 # ── Message ───────────────────────────────────────────────────────────────────
 
 @dataclass

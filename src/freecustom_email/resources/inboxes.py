@@ -3,7 +3,7 @@ from __future__ import annotations
 from urllib.parse import quote
 from typing import Union, Any
 from ..http import HttpClient, SyncHttpClient
-from ..types import InboxObject, RegisterInboxResult, UnregisterInboxResult
+from ..types import InboxObject, RegisterInboxResult, UnregisterInboxResult, StartTestResult
 
 
 class InboxesResource:
@@ -32,9 +32,18 @@ class InboxesResource:
         data = await self._http.request("DELETE", f"/inboxes/{quote(inbox)}")
         return UnregisterInboxResult.from_dict(data)
 
-    async def get_timeline(self, inbox: str) -> list[dict[str, Any]]:
+    async def start_test(self, inbox: str, test_id: str | None = None) -> StartTestResult:
+        """Start a new test boundary for this inbox."""
+        body: dict[str, Any] = {}
+        if test_id is not None:
+            body["test_id"] = test_id
+        data = await self._http.request("POST", f"/inboxes/{quote(inbox)}/tests", body=body)
+        return StartTestResult.from_dict(data)
+
+    async def get_timeline(self, inbox: str, test_id: str | None = None) -> list[dict[str, Any]]:
         """Get the event timeline for a specific inbox."""
-        data = await self._http.request("GET", f"/inboxes/{quote(inbox)}/timeline")
+        query = f"?test_id={quote(test_id)}" if test_id else ""
+        data = await self._http.request("GET", f"/inboxes/{quote(inbox)}/timeline{query}")
         return data.get("data", [])  # type: ignore
 
     async def get_insights(self, inbox: str) -> list[dict[str, Any]]:
@@ -62,9 +71,18 @@ class SyncInboxesResource:
         data = self._http.request("DELETE", f"/inboxes/{quote(inbox)}")
         return UnregisterInboxResult.from_dict(data)
 
-    def get_timeline(self, inbox: str) -> list[dict[str, Any]]:
+    def start_test(self, inbox: str, test_id: str | None = None) -> StartTestResult:
+        """Start a new test boundary for this inbox."""
+        body: dict[str, Any] = {}
+        if test_id is not None:
+            body["test_id"] = test_id
+        data = self._http.request("POST", f"/inboxes/{quote(inbox)}/tests", body=body)
+        return StartTestResult.from_dict(data)
+
+    def get_timeline(self, inbox: str, test_id: str | None = None) -> list[dict[str, Any]]:
         """Get the event timeline for a specific inbox."""
-        data = self._http.request("GET", f"/inboxes/{quote(inbox)}/timeline")
+        query = f"?test_id={quote(test_id)}" if test_id else ""
+        data = self._http.request("GET", f"/inboxes/{quote(inbox)}/timeline{query}")
         return data.get("data", [])  # type: ignore
 
     def get_insights(self, inbox: str) -> list[dict[str, Any]]:

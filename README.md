@@ -186,6 +186,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 timeline = client.inboxes.get_timeline('test@domain.com')
 print(timeline)
 
+# Start a test boundary (creates a test run ID and logs a 'test_started' event)
+test_result = client.inboxes.start_test('test@domain.com', 'my-test-run-123')
+print('Test started:', test_result.test_id)
+
+# Fetch timeline filtered by test run
+filtered_timeline = client.inboxes.get_timeline('test@domain.com', 'my-test-run-123')
+print(filtered_timeline)
+
 # Fetch failure insights and warnings
 insights = client.inboxes.get_insights('test@domain.com')
 print(insights)
