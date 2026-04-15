@@ -46,8 +46,8 @@ from freecustom_email import FreeCustomEmail
 async def main():
     client = FreeCustomEmail(api_key="fce_...")
 
-    # Register an inbox
-    await client.inboxes.register("test@ditube.info")
+    # Register an inbox (pass is_testing=True for zero-latency testing, Growth plan+)
+    await client.inboxes.register("test@ditube.info", is_testing=True)
     print("Inbox registered!")
 
     # Wait for an OTP (Growth plan+)
@@ -71,8 +71,8 @@ from freecustom_email import FreeCustomEmail
 
 client = FreeCustomEmail(api_key="fce_...", sync=True)
 
-# Register and wait
-client.inboxes.register("sync-test@ditube.info")
+# Register and wait (pass is_testing=True for zero-latency testing)
+client.inboxes.register("sync-test@ditube.info", is_testing=True)
 otp = client.otp.wait_for("sync-test@ditube.info")
 print(f"OTP received: {otp}")
 ```
@@ -178,3 +178,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [API Documentation](https://freecustom.email/api/docs)
 - [Dashboard](https://freecustom.email/api/dashboard)
 - [Support](mailto:support@freecustom.email)
+
+### Observability & Debugging
+
+```python
+# Fetch the event timeline for an inbox
+timeline = client.inboxes.get_timeline('test@domain.com')
+print(timeline)
+
+# Fetch failure insights and warnings
+insights = client.inboxes.get_insights('test@domain.com')
+print(insights)
+```

@@ -73,6 +73,7 @@ class Message:
     text: Optional[str] = None
     html: Optional[str] = None
     otp: Optional[str] = None
+    otp_score: Optional[float] = None
     verification_link: Optional[str] = None
     has_attachment: bool = False
     was_attachment_stripped: bool = False
@@ -90,6 +91,7 @@ class Message:
             text=d.get("text"),
             html=d.get("html"),
             otp=d.get("otp"),
+            otp_score=d.get("otpScore"),
             verification_link=d.get("verificationLink"),
             has_attachment=d.get("hasAttachment", False),
             was_attachment_stripped=d.get("wasAttachmentStripped", False),
@@ -113,6 +115,7 @@ class DeleteMessageResult:
 class OtpResult:
     success: bool
     otp: Optional[str]
+    score: Optional[float] = None
     email_id: Optional[str] = None
     from_: Optional[str] = None
     subject: Optional[str] = None
@@ -125,6 +128,7 @@ class OtpResult:
         return cls(
             success=d["success"],
             otp=d.get("otp"),
+            score=d.get("score"),
             email_id=d.get("email_id"),
             from_=d.get("from"),
             subject=d.get("subject"),
@@ -408,6 +412,7 @@ class WsEmailEvent:
     text: Optional[str] = None
     html: Optional[str] = None
     otp: Optional[str] = None
+    otp_score: Optional[float] = None
     verification_link: Optional[str] = None
     has_attachment: bool = False
     upgrade_hint: Optional[str] = None
@@ -423,6 +428,7 @@ class WsEmailEvent:
             text=d.get("text"),
             html=d.get("html"),
             otp=d.get("otp"),
+            otp_score=d.get("otpScore"),
             verification_link=d.get("verificationLink"),
             has_attachment=d.get("hasAttachment", False),
             upgrade_hint=d.get("_upgrade_hint"),

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "freecustom-email"
-version = "1.0.2"
+version = "1.0.3"
 description = "Official Python SDK for FreeCustom.Email — disposable inboxes, OTP extraction, real-time WebSocket delivery"
 readme = "README.md"
 license = { file = "LICENSE" }
